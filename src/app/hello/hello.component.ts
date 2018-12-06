@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HelloComponent implements OnInit {
   title = 'Hello, Angular.';
-  url = 'http://35.187.159.0';
+  url = 'http://35.187.159.0/api';
   code: string;
   message: string;
   data: any;
