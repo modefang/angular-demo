@@ -1,5 +1,15 @@
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}
   </h1>
+  <h2>
+    {{ data.content }}
+  </h2>
+  <h3>
+    code: <strong>{{ code }}</strong>
+  </h3>
+  <h3>
+    message: <strong>{{ message }}</strong>
+  </h3>
+  <button type="button" class="btn btn-primary" (click)="addCount()">Add</button>
 </div>
