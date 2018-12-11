@@ -9,6 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class HelloComponent implements OnInit {
   title = 'Hello, Angular.';
   url = 'http://35.187.159.0/api';
+  content = '';
   code: string;
   message: string;
   data: any;
@@ -20,6 +21,9 @@ export class HelloComponent implements OnInit {
       this.code = res.code;
       this.message = res.message;
       this.data = res.data;
+      if (this.code === '101') {
+        this.content = this.data.content;
+      }
     });
   }
 
@@ -28,6 +32,9 @@ export class HelloComponent implements OnInit {
       this.code = res.code;
       this.message = res.message;
       this.data = res.data;
+      if (this.code === '101') {
+        this.content = this.data.content;
+      }
     });
   }
 }
