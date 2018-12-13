@@ -1,15 +1,15 @@
 <div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
-  <h2>
+  <alert type="success" style="align-content: center">
+    <strong>{{ title }}</strong>
+  </alert>
+  <alert type="success" style="align-content: center">
     {{ content }}
-  </h2>
-  <h3>
+  </alert>
+  <alert type="info" style="align-content: center">
     code: <strong>{{ code }}</strong>
-  </h3>
-  <h3>
+  </alert>
+  <alert type="info" style="align-content: center">
     message: <strong>{{ message }}</strong>
-  </h3>
+  </alert>
   <button type="button" class="btn btn-primary" (click)="addCount()">Add</button>
 </div>
