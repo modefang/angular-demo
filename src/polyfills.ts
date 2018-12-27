@@ -78,3 +78,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+// 解决浏览器报错：Uncaught ReferenceError: global is not defined
+(window as any).global = window;

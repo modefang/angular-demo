@@ -4,14 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { HelloComponent } from './hello/hello.component';
 import { HttpClientModule } from '@angular/common/http';
-import {AlertModule, ButtonsModule} from 'ngx-bootstrap';
+import {AlertModule, ButtonsModule, ModalModule} from 'ngx-bootstrap';
+import {WebsocketComponent} from './websocket/websocket.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HelloComponent
+    WebsocketComponent,
+    HelloComponent,
+    AppComponent
   ],
   imports: [
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    ModalModule.forRoot(),
     ButtonsModule.forRoot(),
     AlertModule.forRoot(),
     BrowserModule,
@@ -19,6 +26,7 @@ import {AlertModule, ButtonsModule} from 'ngx-bootstrap';
   ],
   providers: [],
   bootstrap: [
+    WebsocketComponent,
     HelloComponent
   ]
 })
