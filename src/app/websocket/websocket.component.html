@@ -2,18 +2,18 @@
   <strong>websocket</strong>
 </alert>
 <div style="text-align:center">
-  <button id="connect" style="margin-right:100px" type="button" class="btn btn-primary" (click)="connect()">connect
-  </button>
-  <button id="disconnect" type="button" class="btn btn-primary" (click)="disconnect()" disabled="disabled">disconnect
-  </button>
+  <button id="connect" style="margin-right:100px" type="button" class="btn btn-primary" (click)="connect()">connect</button>
+  <button id="disconnect" type="button" class="btn btn-primary" (click)="disconnect()" disabled="disabled">disconnect</button>
 </div>
 <div style="margin: 20px 0; text-align:center">
-  <input #message style="display: inline-block; width:300px; margin-right:30px" class="form-control" type="text"
-         placeholder="message">
+  <input #message id="message" style="display: inline-block; width:300px; margin-right:30px" class="form-control" type="text" placeholder="message">
   <button type="button" class="btn btn-primary" (click)="sendMessage(message.value)">send</button>
 </div>
-<div id="show-message" style="text-align:center">
-  <alert type="info" *ngFor="let msg of messages" style="align-content: center">
-    {{ msg }}
-  </alert>
-</div>
+<mat-card>
+  <mat-list>
+    <mat-list-item *ngFor="let msg of messages; index as i" style="align-content: center">
+      <span>{{ msg }}</span>
+      <mat-divider *ngIf="i < messages.length - 1"></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

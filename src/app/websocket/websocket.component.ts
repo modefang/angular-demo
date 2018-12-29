@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
+import {environment} from '../../environments/environment';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import * as $ from 'jquery';
@@ -9,10 +10,9 @@ import * as $ from 'jquery';
   templateUrl: './websocket.component.html'
 })
 export class WebsocketComponent {
-  // url = 'http://35.187.159.0/api';
-  private url = 'http://127.0.0.1:8080';
-  private messages: string[] = [];
+  private url = environment.apiUrl;
   private websocketClient: any;
+  public messages: string[] = [];
 
   constructor(private snackBar: MatSnackBar) {}
 
