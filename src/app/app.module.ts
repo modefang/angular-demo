@@ -4,11 +4,11 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app/app.component';
 import {HelloComponent} from './hello/hello.component';
 import {WebsocketComponent} from './websocket/websocket.component';
-import {RabbitmqComponent} from './rabbitmq/rabbitmq.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AlertModule, ButtonsModule, ModalModule} from 'ngx-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSnackBarModule, MatCardModule, MatListModule, MatDividerModule} from '@angular/material';
+import {RabbitmqComponent} from './rabbitmq/rabbitmq.component';
 
 @NgModule({
   declarations: [

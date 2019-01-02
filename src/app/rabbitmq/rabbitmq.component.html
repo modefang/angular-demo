@@ -8,10 +8,10 @@
       <button id="disconnectRabbitmqClient" type="button" class="btn btn-primary" (click)="disconnectRabbitmqClient()" disabled="disabled">disconnect</button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-6" style="margin-bottom: 30px;">
+  <div class="row" *ngFor="let objects of messages;">
+    <div class="col-lg-6" *ngFor="let obj of objects;" style="margin-bottom: 30px;">
       <div style="text-align: center; margin-bottom: 20px">
-        <button type="button" class="btn btn-primary" (click)="sendRabbitmqMessage('hello')">hello</button>
+        <button type="button" class="btn btn-primary" (click)="sendRabbitmqMessage(this.html)">{{ obj.desc }}</button>
       </div>
       <div class="container-fluid">
         <div class="row">
@@ -21,9 +21,9 @@
             </alert>
             <mat-card>
               <mat-list>
-                <mat-list-item *ngFor="let msg of helloPublisher; index as i" style="align-content: center">
+                <mat-list-item *ngFor="let msg of obj.publisherMessages; index as i" style="align-content: center">
                   <span>{{ msg }}</span>
-                  <mat-divider *ngIf="i < helloPublisher.length - 1"></mat-divider>
+                  <mat-divider *ngIf="i < obj.publisherMessages.length - 1"></mat-divider>
                 </mat-list-item>
               </mat-list>
             </mat-card>
@@ -34,9 +34,9 @@
             </alert>
             <mat-card>
               <mat-list>
-                <mat-list-item *ngFor="let msg of helloConsumer; index as i" style="align-content: center">
+                <mat-list-item *ngFor="let msg of obj.consumerMessages; index as i" style="align-content: center">
                   <span>{{ msg }}</span>
-                  <mat-divider *ngIf="i < helloConsumer.length - 1"></mat-divider>
+                  <mat-divider *ngIf="i < obj.consumerMessages.length - 1"></mat-divider>
                 </mat-list-item>
               </mat-list>
             </mat-card>
@@ -44,7 +44,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
   </div>
 </div>

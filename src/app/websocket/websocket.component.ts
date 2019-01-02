@@ -45,8 +45,11 @@ export class WebsocketComponent {
   }
 
   sendMessage(message) {
-    this.websocketClient.send('/sendMessage', {}, message);
-    $('#message').val('');
+    if (this.websocketClient != null) {
+      this.websocketClient.send('/sendMessage', {}, message);
+      $('#message').val('');
+    }
+    this.openSnackBar('publisher is not online!');
   }
 
   setConnected(connected) {

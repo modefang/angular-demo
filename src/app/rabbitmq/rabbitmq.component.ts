@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import * as $ from 'jquery';
@@ -12,13 +11,17 @@ import * as $ from 'jquery';
 })
 export class RabbitmqComponent {
   private publisherUrl = environment.apiUrl;
-  private publisherClient: any;
   private consumerUrl = 'http://localhost:8090';
+  private publisherClient: any;
   private consumerClient: any;
-  public helloPublisher: string[] = [];
-  public helloConsumer: string[] = [];
+  public messages = [
+    [
+      { desc: 'hello', publisherMessages: [], consumerMessages: [] },
+      { desc: 'object', publisherMessages: [], consumerMessages: [] }
+    ]
+  ];
 
-  constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
+  constructor(private snackBar: MatSnackBar) {}
 
   openSnackBar(message: string) {
     this.snackBar.open(message, 'close');
@@ -36,7 +39,10 @@ export class RabbitmqComponent {
         that.openSnackBar(res.body);
       });
       that.publisherClient.subscribe('/topic/sendHello', res => {
-        that.helloPublisher.push(res.body);
+        that.messages[0][0].publisherMessages.push(res.body);
+      });
+      that.publisherClient.subscribe('/topic/sendObject', res => {
+        that.messages[0][1].publisherMessages.push(res.body);
       });
     });
     // consumer
@@ -48,7 +54,10 @@ export class RabbitmqComponent {
         that.openSnackBar(res.body);
       });
       that.consumerClient.subscribe('/topic/receiveHello', res => {
-        that.helloConsumer.push(res.body);
+        that.messages[0][0].consumerMessages.push(res.body);
+      });
+      that.consumerClient.subscribe('/topic/receiveObject', res => {
+        that.messages[0][1].consumerMessages.push(res.body);
       });
     });
   }
@@ -64,7 +73,10 @@ export class RabbitmqComponent {
   }
 
   sendRabbitmqMessage(exchange) {
-    this.publisherClient.send('/' + exchange);
+    if (this.publisherClient != null) {
+      this.publisherClient.send('/' + exchange);
+    }
+    this.openSnackBar('publisher is not online!');
   }
 
   setConnected(connected) {
