@@ -9,20 +9,18 @@ import {HttpClient} from '@angular/common/http';
 export class HelloComponent implements OnInit {
   title = 'Hello, Angular.';
   url = 'http://35.187.159.0/api';
-  content = '';
+  content = 'no data';
   code: string;
-  message: string;
-  data: any;
+  desc: string;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http.get(this.url + '/hello').subscribe((res: any) => {
       this.code = res.code;
-      this.message = res.message;
-      this.data = res.data;
-      if (this.code === '101') {
-        this.content = this.data.content;
+      this.desc = res.desc;
+      if (this.code === '00001') {
+        this.content = 'Hello, spring boot. Database count: ' + res.data.databaseCount + '. Redis count: ' + res.data.redisCount;
       }
     });
   }
@@ -30,10 +28,9 @@ export class HelloComponent implements OnInit {
   public addCount() {
     this.http.get(this.url + '/count/add').subscribe((res: any) => {
       this.code = res.code;
-      this.message = res.message;
-      this.data = res.data;
-      if (this.code === '101') {
-        this.content = this.data.content;
+      this.desc = res.desc;
+      if (this.code === '00001') {
+        this.content = 'Hello, spring boot. Database count: ' + res.data.databaseCount + '. Redis count: ' + res.data.redisCount;
       }
     });
   }

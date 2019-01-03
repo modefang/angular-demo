@@ -9,11 +9,16 @@
   <input #message id="message" style="display: inline-block; width:300px; margin-right:30px" class="form-control" type="text" placeholder="message">
   <button type="button" class="btn btn-primary" (click)="sendMessage(message.value)">send</button>
 </div>
-<mat-card>
-  <mat-list>
-    <mat-list-item *ngFor="let msg of messages; index as i" style="align-content: center">
-      <span>{{ msg }}</span>
-      <mat-divider *ngIf="i < messages.length - 1"></mat-divider>
-    </mat-list-item>
-  </mat-list>
-</mat-card>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <mat-card>
+        <mat-list>
+          <mat-list-item class="divider" *ngFor="let msg of messages" style="align-content: center; height: 100%; padding: 5px 0;">
+            <p class="text">{{ msg }}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</div>
